@@ -27,6 +27,13 @@ public class LinkedList<T> {
 	public LinkedList() {
 		head = null;
 	}
+	
+	private Boolean invalidPositionException(int position) {
+		if((position < 0) || (position > this.size()-1)) {
+			return true;
+		}
+		return false;
+	}
 
 	/**
 	 * This method returns a reference to a node whose position is at pos
@@ -41,8 +48,7 @@ public class LinkedList<T> {
 	 */
 	private Node<T> locateNode(int pos) throws InvalidPositionException {
 		
-		
-		if((pos < 0) || (pos > this.size()-1)) {
+		if(invalidPositionException(pos)) {
 			throw new InvalidPositionException("Outside Bounds");
 		}
 		
@@ -98,7 +104,11 @@ public class LinkedList<T> {
 	 *             size-1
 	 */
 	public T get(int pos) throws InvalidPositionException {
-		throw new java.lang.UnsupportedOperationException("Not supported yet.");
+		if(invalidPositionException(pos)) {
+			throw new InvalidPositionException("Outside Bounds");
+		}
+		
+		return locateNode(pos).getValue();
 	}
 
 	/**
