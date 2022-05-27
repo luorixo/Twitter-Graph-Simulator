@@ -38,15 +38,20 @@ public class LinkedList<T> {
 	 * @throws InvalidPositionException
 	 *             if position is less than 0 or greater than
 	 *             size-1
-	 * @throws NoSuchElementException
-	 *             if the element does not exist in the
-	 *             LinkedList
 	 */
-	private Node locateNode(int pos) throws InvalidPositionException, NoSuchElementException {
-		throw new java.lang.UnsupportedOperationException("Not supported yet.");
+	private Node locateNode(int pos) throws InvalidPositionException {
 		
 		
+		if((pos < 0) || (pos > this.size()-1)) {
+			throw new InvalidPositionException("Outside Bounds");
+		}
 		
+		Node<T> currentNode = this.head;
+		for(int count = 0; count < pos; count++) {
+			currentNode = currentNode.getNext();
+		}
+		
+		return currentNode;
 	}
 
 	/**
@@ -77,7 +82,7 @@ public class LinkedList<T> {
 		Node<T> nodeToAppend = new Node<T>(element);
 		
 		nodeToAppend.setNext(null);
-		nodeTo
+		
 		
 		
 		throw new java.lang.UnsupportedOperationException("Not supported yet.");
