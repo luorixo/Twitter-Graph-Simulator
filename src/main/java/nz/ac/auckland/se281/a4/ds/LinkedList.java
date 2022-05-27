@@ -45,6 +45,8 @@ public class LinkedList<T> {
 	private Node locateNode(int pos) throws InvalidPositionException, NoSuchElementException {
 		throw new java.lang.UnsupportedOperationException("Not supported yet.");
 		
+		
+		
 	}
 
 	/**
@@ -55,8 +57,8 @@ public class LinkedList<T> {
 	 *            a parameter, which is the value of the node to be prepended
 	 */
 	public void prepend(T element) {
-		
 		Node<T> nodeToPrepend = new Node<T>(element);
+		
 		nodeToPrepend.setNext(head); // set the next node to the previous head
 		this.head = nodeToPrepend; // set as new head
 	}
@@ -74,7 +76,8 @@ public class LinkedList<T> {
 	public void append(T element) {
 		Node<T> nodeToAppend = new Node<T>(element);
 		
-		
+		nodeToAppend.setNext(null);
+		nodeTo
 		
 		
 		throw new java.lang.UnsupportedOperationException("Not supported yet.");
@@ -131,7 +134,20 @@ public class LinkedList<T> {
 	 * @return the size of the list
 	 */
 	public int size() {
-		throw new java.lang.UnsupportedOperationException("Not supported yet.");
+		
+		int sizeCount = 0;
+		Node<T> currentNode = this.head;
+		while(true) {
+			if(currentNode == null) {
+				break;
+			}
+			else {
+				sizeCount++;
+				currentNode = currentNode.getNext();
+			}
+		}
+		
+		return sizeCount;
 	}
 
 	/**
