@@ -44,6 +44,7 @@ public class LinkedList<T> {
 	 */
 	private Node locateNode(int pos) throws InvalidPositionException, NoSuchElementException {
 		throw new java.lang.UnsupportedOperationException("Not supported yet.");
+		
 	}
 
 	/**
@@ -54,9 +55,10 @@ public class LinkedList<T> {
 	 *            a parameter, which is the value of the node to be prepended
 	 */
 	public void prepend(T element) {
-		Node n = new Node(element);
-		throw new java.lang.UnsupportedOperationException("Not supported yet.");
-
+		
+		Node<T> nodeToPrepend = new Node<T>(element);
+		nodeToPrepend.setNext(head); // set the next node to the previous head
+		this.head = nodeToPrepend; // set as new head
 	}
 
 	/**
@@ -70,9 +72,12 @@ public class LinkedList<T> {
 	// Note this method has been refactored using the helper methods
 	// I will do this as a small ACP exercise in class
 	public void append(T element) {
-		Node t = new Node(element);
+		Node<T> nodeToAppend = new Node<T>(element);
+		
+		
+		
+		
 		throw new java.lang.UnsupportedOperationException("Not supported yet.");
-
 	}
 
 	/**
