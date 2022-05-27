@@ -20,6 +20,8 @@ import java.util.NoSuchElementException;
 public class LinkedList<T> {
 	// the head of the linked list
 	private Node<T> head;
+	// the tail of the linked list
+	private Node<T> tail;
 
 	/**
 	 * Constructor for LinkedList
@@ -54,7 +56,9 @@ public class LinkedList<T> {
 		
 		Node<T> currentNode = this.head;
 		for(int count = 0; count < pos; count++) {
+			System.out.println(currentNode.getValue());
 			currentNode = currentNode.getNext();
+			
 		}
 		
 		return currentNode;
@@ -87,7 +91,13 @@ public class LinkedList<T> {
 	public void append(T element) {
 		Node<T> nodeToAppend = new Node<T>(element);
 		
-		locateNode(this.size()-1).setNext(nodeToAppend); // sets the previous tail to point to new tail
+		if(this.size() == 0) {
+			head = nodeToAppend;
+		}
+		else {
+			locateNode(this.size()-1).setNext(nodeToAppend); // sets the previous tail to point to new tail
+		}
+		
 		nodeToAppend.setNext(null); // sets node as tail
 		
 	}
@@ -165,14 +175,10 @@ public class LinkedList<T> {
 		
 		int sizeCount = 0;
 		Node<T> currentNode = this.head;
-		while(true) {
-			if(currentNode == null) {
-				break;
-			}
-			else {
-				sizeCount++;
-				currentNode = currentNode.getNext();
-			}
+		while(currentNode != null) {
+			System.out.println("current size: " + sizeCount);
+			sizeCount++;
+			currentNode = currentNode.getNext();
 		}
 		
 		return sizeCount;
