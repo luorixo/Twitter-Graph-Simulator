@@ -39,7 +39,7 @@ public class LinkedList<T> {
 	 *             if position is less than 0 or greater than
 	 *             size-1
 	 */
-	private Node locateNode(int pos) throws InvalidPositionException {
+	private Node<T> locateNode(int pos) throws InvalidPositionException {
 		
 		
 		if((pos < 0) || (pos > this.size()-1)) {
@@ -81,11 +81,9 @@ public class LinkedList<T> {
 	public void append(T element) {
 		Node<T> nodeToAppend = new Node<T>(element);
 		
-		nodeToAppend.setNext(null);
+		locateNode(this.size()-1).setNext(nodeToAppend); // sets the previous tail to point to new tail
+		nodeToAppend.setNext(null); // sets node as tail
 		
-		
-		
-		throw new java.lang.UnsupportedOperationException("Not supported yet.");
 	}
 
 	/**
