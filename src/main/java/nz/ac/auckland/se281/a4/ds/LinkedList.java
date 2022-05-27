@@ -124,8 +124,23 @@ public class LinkedList<T> {
 	 *             size-1
 	 */
 	public void insert(int pos, T element) throws InvalidPositionException {
-		throw new java.lang.UnsupportedOperationException("Not supported yet.");
 
+		if((pos < 0) || (pos > this.size())) {
+			throw new InvalidPositionException("Outside Accepted Bounds");
+		}
+		
+		if(pos == 0) {
+			this.prepend(element);
+		}
+		else if(pos == this.size()) {
+			this.append(element);
+		}
+		else {
+			Node<T> nodeToInsert = new Node<T>(element);
+			
+			locateNode(pos-1).setNext(nodeToInsert); // make previous node point to current node to insert
+			nodeToInsert.setNext(locateNode(pos)); // set next node to the node previously in current position
+		}
 	}
 
 	/**
