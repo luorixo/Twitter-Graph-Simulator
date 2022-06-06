@@ -23,7 +23,7 @@ public class NodesStackAndQueue<T> {
 	 * @return true if the stack / queue is empty
 	 */
 	public boolean isEmpty() {
-		throw new java.lang.UnsupportedOperationException("Not supported yet.");
+		return head == null;
 	}
 
 	/**
