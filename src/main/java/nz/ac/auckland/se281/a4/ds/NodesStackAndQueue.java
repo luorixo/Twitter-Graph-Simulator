@@ -12,9 +12,11 @@ import java.util.EmptyStackException;
 public class NodesStackAndQueue<T> {
 
 	private Node<T> head; // You should use this variable in your methods
+	private Node<T> tail;
 
 	public NodesStackAndQueue() {
 		head = null;
+		tail = null;
 	}
 
 	/**
@@ -34,13 +36,19 @@ public class NodesStackAndQueue<T> {
 	 *            the element to be "pushed"
 	 */
 	public void push(T element) {
-		Node n = new Node(element);
-		throw new java.lang.UnsupportedOperationException("Not supported yet.");
-
+		Node<T> nodeToPush = new Node<T>(element);
+		
+		if(isEmpty()) {
+			head = nodeToPush;
+		} else {
+			nodeToPush.setNext(tail);
+		}
+		
+		tail = nodeToPush;
 	}
 
 	/**
-	 * pop an element from the top of the stack (removes and returns the tope
+	 * pop an element from the top of the stack (removes and returns the top
 	 * element)
 	 * TODO: Complete this method (Note: You may have to change the return type)
 	 * 
@@ -48,8 +56,15 @@ public class NodesStackAndQueue<T> {
 	 * @throws EmptyStackException
 	 *             if the stack is empty
 	 */
-	public Node pop() throws EmptyStackException {
-		throw new java.lang.UnsupportedOperationException("Not supported yet.");
+	public Node<T> pop() throws EmptyStackException {
+		if(isEmpty()) {
+			throw new EmptyStackException();
+		}
+		
+		Node<T> nodeToPop = tail;
+		tail = tail.getNext();
+		
+		return nodeToPop;
 	}
 
 	/**
@@ -60,7 +75,7 @@ public class NodesStackAndQueue<T> {
 	 * @throws EmptyStackException
 	 *             if the stack is empty
 	 */
-	public Node peek() throws EmptyStackException {
+	public Node<T> peek() throws EmptyStackException {
 		throw new java.lang.UnsupportedOperationException("Not supported yet.");
 	}
 

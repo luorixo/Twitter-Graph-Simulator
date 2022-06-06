@@ -198,8 +198,6 @@ public class LinkedList<T> {
 			System.out.println("current size: " + sizeCount);
 			System.out.println("current value: " + currentNode.getValue());
 			sizeCount++;
-			
-			if(currentNode == tail) {break;}
 			currentNode = currentNode.getNext();
 		}
 		

@@ -31,9 +31,9 @@ import nz.ac.auckland.se281.a4.ds.*;
 @RunWith(Suite.class)
 @SuiteClasses({
 
-	//StudentsTestsForMarking.Task1NodeStackAndQueueTest.class,
-	//StudentsTestsForMarking.Task1NodeStackAndQueueGenericsTest.class,
-	//StudentsTestsForMarking.Task1NodeStackAndQueueExceptionTest.class,
+	StudentsTestsForMarking.Task1NodeStackAndQueueTest.class,
+	StudentsTestsForMarking.Task1NodeStackAndQueueGenericsTest.class,
+	StudentsTestsForMarking.Task1NodeStackAndQueueExceptionTest.class,
 
 	StudentsTestsForMarking.Task2LinkedListTest.class,
 	StudentsTestsForMarking.Task2LinkedListGenericsTest.class,
