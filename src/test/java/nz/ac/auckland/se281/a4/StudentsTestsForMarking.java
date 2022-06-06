@@ -225,6 +225,22 @@ public class StudentsTestsForMarking {
 	@FixMethodOrder(MethodSorters.NAME_ASCENDING)
 	public static class Task2LinkedListTest {
 		@Test
+		public void MYTEST() {
+			LinkedList<Integer> edges = new LinkedList<Integer>();
+			edges.append(1);
+			edges.insert(1, 1);
+			edges.insert(1, 1);
+			/*edges = new LinkedList<Integer>();
+			edges.append(-1);
+
+			for (int i = 0; i < 10; i++) {
+				edges.insert(1, i);
+				assertEquals((Integer) i, edges.get(1));
+			} */
+			assertEquals(3, edges.size());
+		}
+		
+		@Test
 		public void T2_01_Is_Empty() {
 			LinkedList<TwitterHandle> edges = new LinkedList<TwitterHandle>();
 			assertEquals(0, edges.size());

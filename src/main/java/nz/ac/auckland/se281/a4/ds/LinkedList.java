@@ -71,11 +71,15 @@ public class LinkedList<T> {
 	 * @param element
 	 *            a parameter, which is the value of the node to be prepended
 	 */
-	public void prepend(T element) {
-		Node<T> nodeToPrepend = new Node<T>(element);
-		
-		nodeToPrepend.setNext(head); // set the next node to the previous head
-		this.head = nodeToPrepend; // set as new head
+	public void prepend(T element) {		
+		if(this.size() == 0) {
+			append(element);
+		}
+		else {
+			Node<T> nodeToPrepend = new Node<T>(element);
+			nodeToPrepend.setNext(head); // set the next node to the previous head
+			this.head = nodeToPrepend; // set as new head
+		}
 	}
 
 	/**
@@ -95,11 +99,10 @@ public class LinkedList<T> {
 			head = nodeToAppend;
 		}
 		else {
-			locateNode(this.size()-1).setNext(nodeToAppend); // sets the previous tail to point to new tail
+			tail.setNext(nodeToAppend); // sets the previous tail to point to new tail
 		}
-		
-		nodeToAppend.setNext(null); // sets node as tail
-		
+		tail = nodeToAppend; // set to tail
+		tail.setNext(null);
 	}
 
 	/**
@@ -139,17 +142,18 @@ public class LinkedList<T> {
 			throw new InvalidPositionException("Outside Accepted Bounds");
 		}
 		
-		if(pos == 0) {
-			this.prepend(element);
-		}
-		else if(pos == this.size()) {
+		if(pos == this.size()) {
 			this.append(element);
+		}
+		else if(pos == 0) {
+			this.prepend(element);
 		}
 		else {
 			Node<T> nodeToInsert = new Node<T>(element);
-			
-			locateNode(pos-1).setNext(nodeToInsert); // make previous node point to current node to insert
+			System.out.println("I AM INSERTING NORMALLY");
 			nodeToInsert.setNext(locateNode(pos)); // set next node to the node previously in current position
+			locateNode(pos-1).setNext(nodeToInsert); // make previous node point to current node to insert
+			
 		}
 	}
 
@@ -161,8 +165,23 @@ public class LinkedList<T> {
 	 *            an integer, which is the position
 	 */
 	public void remove(int pos) throws InvalidPositionException {
-		throw new java.lang.UnsupportedOperationException("Not supported yet.");
-
+		if(invalidPositionException(pos)) {
+			throw new InvalidPositionException("Outside Bounds");
+		}
+		
+		if((pos == 0) && (pos == this.size()-1)) {
+			this.head = null;
+		}
+		else if(pos == this.size()-1) {
+			locateNode(pos-1).setNext(null);
+		}
+		else if(pos == 0) {
+			this.head = locateNode(pos+1);
+		}
+		else {
+			locateNode(pos-1).setNext(locateNode(pos+1));
+		}
+		
 	}
 
 	/**
@@ -177,7 +196,10 @@ public class LinkedList<T> {
 		Node<T> currentNode = this.head;
 		while(currentNode != null) {
 			System.out.println("current size: " + sizeCount);
+			System.out.println("current value: " + currentNode.getValue());
 			sizeCount++;
+			
+			if(currentNode == tail) {break;}
 			currentNode = currentNode.getNext();
 		}
 		
