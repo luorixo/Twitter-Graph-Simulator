@@ -76,7 +76,11 @@ public class NodesStackAndQueue<T> {
 	 *             if the stack is empty
 	 */
 	public Node<T> peek() throws EmptyStackException {
-		throw new java.lang.UnsupportedOperationException("Not supported yet.");
+		if(isEmpty()) {
+			throw new EmptyStackException();
+		}
+		
+		return tail;
 	}
 
 	/**
