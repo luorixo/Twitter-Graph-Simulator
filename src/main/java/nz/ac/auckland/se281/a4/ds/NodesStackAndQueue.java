@@ -91,7 +91,12 @@ public class NodesStackAndQueue<T> {
 	 *            the element to be appended
 	 */
 	public void append(T element) {
-		Node n = new Node(element);
-		throw new java.lang.UnsupportedOperationException("Not supported yet.");
+		if(isEmpty()) {
+			push(element);
+		} else {
+			Node<T> nodeToAppend = new Node<T>(element);
+			head.setNext(nodeToAppend);
+			head = nodeToAppend;
+		}
 	}
 }
