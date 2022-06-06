@@ -77,8 +77,13 @@ public class Graph {
 	 * @return true if the set and relation are reflexive
 	 */
 	public boolean isReflexive(List<String> set, List<String> relation) {
-		throw new java.lang.UnsupportedOperationException("Not supported yet.");
-
+		for(String node : set) {
+			
+			if(!relation.contains(node + "," + node)) {
+				return false;
+			}
+		}
+		return true;
 	}
 
 	/**
