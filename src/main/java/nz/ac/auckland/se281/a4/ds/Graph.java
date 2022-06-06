@@ -103,7 +103,13 @@ public class Graph {
 	 * @return true if the relation is symmetric
 	 */
 	public boolean isSymmetric(List<String> relation) {
-		throw new java.lang.UnsupportedOperationException();
+		for(String edge : relation) {
+			String[] nodesToCheck = edge.split(",");
+			if(!relation.contains(nodesToCheck[1] + "," + nodesToCheck[0])) {
+				return false;
+			}
+		}
+		return true;
 	}
 
 	/**
