@@ -56,15 +56,22 @@ public class NodesStackAndQueue<T> {
 	 * @throws EmptyStackException
 	 *             if the stack is empty
 	 */
-	public Node<T> pop() throws EmptyStackException {
+	public T pop() throws EmptyStackException {
 		if(isEmpty()) {
 			throw new EmptyStackException();
+		} 
+		
+		if(head == tail) {
+			T tailValue = tail.getValue();
+			head = null;
+			tail = null;
+			return tailValue;
 		}
-		
-		Node<T> nodeToPop = tail;
-		tail = tail.getNext();
-		
-		return nodeToPop;
+		else {
+			Node<T> nodeToPop = tail;
+			tail = tail.getNext();
+			return nodeToPop.getValue();
+		}
 	}
 
 	/**
@@ -75,12 +82,12 @@ public class NodesStackAndQueue<T> {
 	 * @throws EmptyStackException
 	 *             if the stack is empty
 	 */
-	public Node<T> peek() throws EmptyStackException {
+	public T peek() throws EmptyStackException {
 		if(isEmpty()) {
 			throw new EmptyStackException();
 		}
 		
-		return tail;
+		return tail.getValue();
 	}
 
 	/**

@@ -28,6 +28,7 @@ public class LinkedList<T> {
 	 */
 	public LinkedList() {
 		head = null;
+		tail = null;
 	}
 	
 	private Boolean invalidPositionException(int position) {

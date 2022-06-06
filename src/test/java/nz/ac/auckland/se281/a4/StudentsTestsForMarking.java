@@ -35,8 +35,8 @@ import nz.ac.auckland.se281.a4.ds.*;
 	StudentsTestsForMarking.Task1NodeStackAndQueueGenericsTest.class,
 	StudentsTestsForMarking.Task1NodeStackAndQueueExceptionTest.class,
 
-	StudentsTestsForMarking.Task2LinkedListTest.class,
-	StudentsTestsForMarking.Task2LinkedListGenericsTest.class,
+	//StudentsTestsForMarking.Task2LinkedListTest.class,
+	//StudentsTestsForMarking.Task2LinkedListGenericsTest.class,
 
 	//StudentsTestsForMarking.Task3ReflexiveTest.class,
 	//StudentsTestsForMarking.Task3SymmetricTest.class,
