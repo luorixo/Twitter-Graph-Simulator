@@ -137,14 +137,15 @@ public class Graph {
 			for(String edgeCheck1 : relation) {
 				if (edgeCheck1.startsWith(relationToCheck[1])) {
 					String[] relationToCheck2 = edgeCheck1.split(",");
+					String requiredElement = relationToCheck[0] + "," + relationToCheck2[1];
 					
-					if(!relation.contains(relationToCheck[0] + "," + relationToCheck2[1])) {
+					if(!relation.contains(requiredElement)) {
+						System.out.println("For the graph to be transitive tuple: " + requiredElement + " MUST be present");
 						return false;
 					}
 				}
 			}
-		}
-		
+		}	
 		return true;
 	}
 
@@ -161,7 +162,7 @@ public class Graph {
 	 * @return true if the set and relation are anti-symmetric
 	 */
 	public boolean isEquivalence(List<String> set, List<String> relation) {
-		throw new java.lang.UnsupportedOperationException("Not supported yet.");
+		return ((isReflexive(set, relation) && isSymmetric(relation)) && isTransitive(relation));
 	}
 
 	/**
