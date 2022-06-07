@@ -162,7 +162,7 @@ public class Graph {
 	 * @return true if the set and relation are anti-symmetric
 	 */
 	public boolean isEquivalence(List<String> set, List<String> relation) {
-		return ((isReflexive(set, relation) && isSymmetric(relation)) && isTransitive(relation));
+		return (isReflexive(set, relation) && isSymmetric(relation) && isTransitive(relation));
 	}
 
 	/**
@@ -184,7 +184,18 @@ public class Graph {
 	 * @return List that is the equivalence class
 	 */
 	public List<String> computeEquivalence(String node, List<String> set, List<String> relation) {
-		throw new java.lang.UnsupportedOperationException("Not supported yet.");
+		if(!isEquivalence(set, relation)) {
+			System.out.println("Can't compute equivalence class as this is not an equivalence relation");
+			return null;
+		}
+		
+		List<String> equivalenceClass = new ArrayList<String>();
+		for(String edge : relation) {
+			if(edge.startsWith(node)) {
+				equivalenceClass.add(edge.split(",")[1]);
+			}
+		}
+		return equivalenceClass;
 	}
 
 	/**
