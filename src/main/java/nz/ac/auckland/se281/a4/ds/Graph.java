@@ -1,6 +1,7 @@
 package nz.ac.auckland.se281.a4.ds;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.HashSet;
 import java.util.LinkedHashMap;
 import java.util.LinkedHashSet;
@@ -217,8 +218,56 @@ public class Graph {
 	 * @return List of nodes (as strings) using the BFS algorithm
 	 */
 	public List<Node<String>> breadthFirstSearch(Node<String> start, boolean rooted) {// name to breadthFirstSearch
-		throw new java.lang.UnsupportedOperationException("Not supported yet.");
+		/*if(rooted == true) {
+			
+		}*/
+		
+		List<Node<String>> visited = new ArrayList<Node<String>>();
+		NodesStackAndQueue<Node<String>> queue = new NodesStackAndQueue<Node<String>>();
+		
+		while(true) {
+			
+			queue.append(start);
+			visited.add(start);
+		
+			while(!queue.isEmpty()) {
+				
+				Node<String> dequeuedNode = queue.pop();
 
+				LinkedList<Edge<Node<String>>> adjacentNodes = adjacencyMap.get(dequeuedNode);
+				while(adjacentNodes.size() != 0) {
+					
+					Node<String> currentNode = adjacentNodes.get(0).getTarget();
+					if(!visited.contains(currentNode)) {
+						visited.add(currentNode);
+						queue.append(currentNode);
+					}
+					adjacentNodes.remove(0);
+				}
+			}
+			
+			if(rooted == false) {
+				Node<String> currentStart = start;
+				for(Node<String> node : adjacencyMap.keySet()) {
+					if(!visited.contains(node)) {
+						start = node;
+						System.out.println("NEW NODE ADDED: " + start.getValue());
+						break;
+					}
+				}
+				
+				if(start == currentStart) {
+					break;
+				}
+			}
+			else {
+				break;
+			}
+		}
+		
+		System.out.println(visited);
+		return visited;
+		
 	}
 
 	/**
