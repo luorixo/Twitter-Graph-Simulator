@@ -74,7 +74,7 @@ public class Graph {
 	 */
 	public boolean isReflexive(List<String> set, List<String> relation) {
 		// loop through the set
-		for (String node : set) { 
+		for (String node : set) {
 			if (!relation.contains(node + "," + node)) { // returns false if relation is not reflexive
 				return false;
 			}
@@ -98,7 +98,7 @@ public class Graph {
 	public boolean isSymmetric(List<String> relation) {
 		// loops through every edge in relation
 		for (String edge : relation) {
-			
+
 			// splits the edge into its nodes
 			String[] nodesToCheck = edge.split(",");
 			String requiredElement = nodesToCheck[1] + "," + nodesToCheck[0];
@@ -124,6 +124,7 @@ public class Graph {
 	 * @return true if the relation is transitive
 	 */
 	public boolean isTransitive(List<String> relation) {
+		// iterate through all edges in relation
 		for (String edge : relation) {
 			String[] relationToCheck = edge.split(",");
 
@@ -132,10 +133,11 @@ public class Graph {
 					String[] relationToCheck2 = edgeCheck1.split(",");
 					String requiredElement = relationToCheck[0] + "," + relationToCheck2[1];
 
+					// checks if transitivity is not satisfied in current iteration
 					if (!relation.contains(requiredElement)) {
 						System.out.println(
 								"For the graph to be transitive tuple: " + requiredElement + " MUST be present");
-						return false;
+						return false; // error message and returns fale
 					}
 				}
 			}
@@ -153,6 +155,7 @@ public class Graph {
 	 * @return true if the set and relation are anti-symmetric
 	 */
 	public boolean isEquivalence(List<String> set, List<String> relation) {
+		// equivalent if the relation is reflexive, symmetric, and transitive
 		return (isReflexive(set, relation) && isSymmetric(relation) && isTransitive(relation));
 	}
 
@@ -172,7 +175,7 @@ public class Graph {
 	 * @return List that is the equivalence class
 	 */
 	public List<String> computeEquivalence(String node, List<String> set, List<String> relation) {
-		if (!isEquivalence(set, relation)) {
+		if (!isEquivalence(set, relation)) { // error if not an equivalence relation
 			System.out.println("Can't compute equivalence class as this is not an equivalence relation");
 			return null;
 		}
@@ -180,10 +183,10 @@ public class Graph {
 		List<String> equivalenceClass = new ArrayList<String>();
 		for (String edge : relation) {
 			if (edge.startsWith(node)) {
-				equivalenceClass.add(edge.split(",")[1]);
+				equivalenceClass.add(edge.split(",")[1]); // adds everything related to node to equivalence class
 			}
 		}
-		return equivalenceClass;
+		return equivalenceClass; // returns equivalence class
 	}
 
 	/**
@@ -213,26 +216,27 @@ public class Graph {
 			queue.append(start);
 			visited.add(start);
 
-			while (!queue.isEmpty()) {
+			while (!queue.isEmpty()) { // until queue has been emptied
 
 				Node<String> dequeuedNode = queue.pop();
 
-				LinkedList<Edge<Node<String>>> adjacentNodes = adjacencyMap.get(dequeuedNode);
+				LinkedList<Edge<Node<String>>> adjacentNodes = adjacencyMap.get(dequeuedNode); // get adjacent nodes
 				while (adjacentNodes.size() != 0) {
 
-					Node<String> currentNode = adjacentNodes.get(0).getTarget();
-					if (!visited.contains(currentNode)) {
+					Node<String> currentNode = adjacentNodes.get(0).getTarget(); // gets the target of the current node
+					if (!visited.contains(currentNode)) { // checks if it has been visited before, adds it to visited
+															// and enqueues it if not
 						visited.add(currentNode);
 						queue.append(currentNode);
 					}
-					adjacentNodes.remove(0);
+					adjacentNodes.remove(0); // to iterate through linked list
 				}
 			}
 
 			if (rooted == false) {
 				Node<String> currentStart = start;
 				for (Node<String> node : adjacencyMap.keySet()) {
-					if (!visited.contains(node)) {
+					if (!visited.contains(node)) { // check all other unvisited roots
 						start = node;
 						break;
 					}
@@ -245,7 +249,7 @@ public class Graph {
 				break;
 			}
 		}
-		System.out.println(visited);
+		// returns list of visited nodes in order
 		return visited;
 	}
 
@@ -265,25 +269,25 @@ public class Graph {
 	 * @return List of nodes (as strings) using the DFS algorithm
 	 */
 	public List<Node<String>> depthFirstSearch(Node<String> start, boolean rooted) {
-		
+
 		List<Node<String>> visited = new ArrayList<Node<String>>();
 		List<Node<String>> stackDuplicates = new ArrayList<Node<String>>();
 		NodesStackAndQueue<Node<String>> stack = new NodesStackAndQueue<Node<String>>();
-		
+
 		while (true) {
 			stack.push(start);
-			
-			while(!stack.isEmpty()) {
-				
+
+			while (!stack.isEmpty()) { // until the stack has been emptied
+
 				Node<String> poppedNode = stack.pop();
 				visited.add(poppedNode);
 				stackDuplicates.add(poppedNode);
-				
-				LinkedList<Edge<Node<String>>> adjacentNodes = adjacencyMap.get(poppedNode);
-				while(adjacentNodes.size() != 0) {
-					
+
+				LinkedList<Edge<Node<String>>> adjacentNodes = adjacencyMap.get(poppedNode); // get adjacent nodes
+				while (adjacentNodes.size() != 0) {
+
 					Node<String> currentNode = adjacentNodes.get(0).getTarget();
-					if(!visited.contains(currentNode) && !stackDuplicates.contains(currentNode)) {
+					if (!visited.contains(currentNode) && !stackDuplicates.contains(currentNode)) {
 						stack.push(currentNode);
 						stackDuplicates.add(currentNode);
 					}
@@ -298,7 +302,7 @@ public class Graph {
 						break;
 					}
 				}
-	
+
 				if (start == currentStart) {
 					break;
 				}
@@ -306,7 +310,7 @@ public class Graph {
 				break;
 			}
 		}
-		
+
 		return visited;
 	}
 

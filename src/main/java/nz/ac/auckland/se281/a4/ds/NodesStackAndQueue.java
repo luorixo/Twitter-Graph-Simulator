@@ -29,45 +29,42 @@ public class NodesStackAndQueue<T> {
 	}
 
 	/**
-	 * Push operation refers to inserting an element in the Top of the stack.
-	 * TODO: Complete this method
+	 * Push operation refers to inserting an element in the Top of the stack. TODO:
+	 * Complete this method
 	 * 
-	 * @param element
-	 *            the element to be "pushed"
+	 * @param element the element to be "pushed"
 	 */
 	public void push(T element) {
 		Node<T> nodeToPush = new Node<T>(element);
-		
-		if(isEmpty()) {
+
+		if (isEmpty()) {
 			head = nodeToPush;
 		} else {
 			nodeToPush.setNext(tail);
 		}
-		
+
 		tail = nodeToPush;
 	}
 
 	/**
 	 * pop an element from the top of the stack (removes and returns the top
-	 * element)
-	 * TODO: Complete this method (Note: You may have to change the return type)
+	 * element) TODO: Complete this method (Note: You may have to change the return
+	 * type)
 	 * 
 	 * @return object of the top element
-	 * @throws EmptyStackException
-	 *             if the stack is empty
+	 * @throws EmptyStackException if the stack is empty
 	 */
 	public T pop() throws EmptyStackException {
-		if(isEmpty()) {
+		if (isEmpty()) {
 			throw new EmptyStackException();
-		} 
-		
-		if(head == tail) {
+		}
+
+		if (head == tail) {
 			T tailValue = tail.getValue();
 			head = null;
 			tail = null;
 			return tailValue;
-		}
-		else {
+		} else {
 			Node<T> nodeToPop = tail;
 			tail = tail.getNext();
 			return nodeToPop.getValue();
@@ -75,30 +72,27 @@ public class NodesStackAndQueue<T> {
 	}
 
 	/**
-	 * get the element from the top of the stack without removing it
-	 * TODO: Complete this method (Note: You may have to change the return type)
+	 * get the element from the top of the stack without removing it TODO: Complete
+	 * this method (Note: You may have to change the return type)
 	 *
 	 * @return the value of the top element
-	 * @throws EmptyStackException
-	 *             if the stack is empty
+	 * @throws EmptyStackException if the stack is empty
 	 */
 	public T peek() throws EmptyStackException {
-		if(isEmpty()) {
+		if (isEmpty()) {
 			throw new EmptyStackException();
 		}
-		
+
 		return tail.getValue();
 	}
 
 	/**
-	 * append an element at the end of the queue
-	 * TODO: Complete this method
+	 * append an element at the end of the queue TODO: Complete this method
 	 *
-	 * @param element
-	 *            the element to be appended
+	 * @param element the element to be appended
 	 */
 	public void append(T element) {
-		if(isEmpty()) {
+		if (isEmpty()) {
 			push(element);
 		} else {
 			Node<T> nodeToAppend = new Node<T>(element);
