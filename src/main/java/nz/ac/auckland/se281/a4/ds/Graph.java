@@ -105,7 +105,9 @@ public class Graph {
 	public boolean isSymmetric(List<String> relation) {
 		for(String edge : relation) {
 			String[] nodesToCheck = edge.split(",");
-			if(!relation.contains(nodesToCheck[1] + "," + nodesToCheck[0])) {
+			String requiredElement = nodesToCheck[1] + "," + nodesToCheck[0];
+			if(!relation.contains(requiredElement)) {
+				System.out.println("For the graph to be symmetric tuple: " + requiredElement + " MUST be present");
 				return false;
 			}
 		}
@@ -129,8 +131,21 @@ public class Graph {
 	 * @return true if the relation is transitive
 	 */
 	public boolean isTransitive(List<String> relation) {
-		throw new java.lang.UnsupportedOperationException("Not supported yet.");
-
+		for(String edge : relation) {
+			String[] relationToCheck = edge.split(",");
+			
+			for(String edgeCheck1 : relation) {
+				if (edgeCheck1.startsWith(relationToCheck[1])) {
+					String[] relationToCheck2 = edgeCheck1.split(",");
+					
+					if(!relation.contains(relationToCheck[0] + "," + relationToCheck2[1])) {
+						return false;
+					}
+				}
+			}
+		}
+		
+		return true;
 	}
 
 	/**
