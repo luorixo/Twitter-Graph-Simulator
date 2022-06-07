@@ -20,6 +20,13 @@ public class LinkedList<T> {
 		tail = null;
 	}
 
+	/**
+	 * This is a helper method that takes in a position and returns whether it is
+	 * outside allowed bounds
+	 * 
+	 * @param position the position of the element
+	 * @return if the position is valid or not
+	 */
 	private Boolean invalidPositionException(int position) {
 		if ((position < 0) || (position > this.size() - 1)) {
 			return true;
@@ -38,12 +45,12 @@ public class LinkedList<T> {
 	 */
 	private Node<T> locateNode(int pos) throws InvalidPositionException {
 
-		if (invalidPositionException(pos)) {
+		if (invalidPositionException(pos)) { // checks if within bounds
 			throw new InvalidPositionException("Outside Bounds");
 		}
 
 		Node<T> currentNode = this.head;
-		for (int count = 0; count < pos; count++) {
+		for (int count = 0; count < pos; count++) { // iterates through all nodes until the desired node is reached
 			currentNode = currentNode.getNext();
 
 		}
@@ -58,6 +65,8 @@ public class LinkedList<T> {
 	 * @param element a parameter, which is the value of the node to be prepended
 	 */
 	public void prepend(T element) {
+
+		// checks size of current linked list to decide on functionality
 		if (this.size() == 0) {
 			append(element);
 		} else {
@@ -99,10 +108,10 @@ public class LinkedList<T> {
 	 */
 	public T get(int pos) throws InvalidPositionException {
 		if (invalidPositionException(pos)) {
-			throw new InvalidPositionException("Outside Bounds");
+			throw new InvalidPositionException("Outside Bounds"); // checks if within bounds
 		}
 
-		return locateNode(pos).getValue();
+		return locateNode(pos).getValue(); // returns the value of the node at that position
 	}
 
 	/**
@@ -117,7 +126,7 @@ public class LinkedList<T> {
 	public void insert(int pos, T element) throws InvalidPositionException {
 
 		if ((pos < 0) || (pos > this.size())) {
-			throw new InvalidPositionException("Outside Accepted Bounds");
+			throw new InvalidPositionException("Outside Accepted Bounds"); // checks if within bounds
 		}
 
 		if (pos == this.size()) {
@@ -163,12 +172,12 @@ public class LinkedList<T> {
 
 		int sizeCount = 0;
 		Node<T> currentNode = this.head;
-		while (currentNode != null) {
+		while (currentNode != null) { // iterates until it finds a null (end of list)
 			sizeCount++;
 			currentNode = currentNode.getNext();
 		}
 
-		return sizeCount;
+		return sizeCount; // returns the count
 	}
 
 	/**
