@@ -46,7 +46,7 @@ import nz.ac.auckland.se281.a4.ds.*;
 	StudentsTestsForMarking.Task3BFSTest.class,
 	StudentsTestsForMarking.Task3DFSTest.class,
 
-	//StudentsTestsForMarking.Task4SearchTweetTest.class,
+	StudentsTestsForMarking.Task4SearchTweetTest.class,
 
 })
 public class StudentsTestsForMarking {

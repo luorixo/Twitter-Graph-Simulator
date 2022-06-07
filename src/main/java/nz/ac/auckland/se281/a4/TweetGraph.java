@@ -46,19 +46,20 @@ public class TweetGraph extends Graph {
 	public String searchTweet(TwitterHandle user, String tweetKeyword) {
 		
 		List<Node<String>> dfsOrder = this.depthFirstSearch(user, false);
-		
-		for(Map.Entry<TwitterHandle, List<Tweet>> entry : this.nodeTweets.entrySet()) {
+		for(Node<String> handleToSearch : dfsOrder) {
 			
+			String currentId = handleToSearch.getValue();
 			
-			
-			
-			TwitterHandle currentHandle = entry.getKey();
-			List<String> tweetsList = getTweetsTexts(currentHandle);
-			
-			for(String tweet : tweetsList) {
-				if(tweet.contains(tweetKeyword)) {
-					System.out.println(tweetKeyword);
-					return("The tweet found is: " + tweet + "\nUser " + currentHandle.getName() + " tweeted " + tweetKeyword);
+			for(Map.Entry<TwitterHandle, List<Tweet>> entry : this.nodeTweets.entrySet()) {
+				if(entry.getKey().getID().contentEquals(currentId)) {
+					TwitterHandle currentHandle = entry.getKey();
+					List<String> tweetsList = getTweetsTexts(currentHandle);
+					for(String tweet : tweetsList) {
+						if(tweet.contains(tweetKeyword)) {
+							System.out.println(tweetKeyword);
+							return("The tweet string found is: " + tweet + "\nUser " + currentHandle.getName() + " {" + currentId + "} tweeted " + tweetKeyword);
+						}
+					}
 				}
 			}
 		}
