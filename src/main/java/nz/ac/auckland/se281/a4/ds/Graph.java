@@ -1,7 +1,6 @@
 package nz.ac.auckland.se281.a4.ds;
 
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.HashSet;
 import java.util.LinkedHashMap;
 import java.util.LinkedHashSet;
@@ -36,8 +35,7 @@ public class Graph {
 	/**
 	 * Creates a Graph
 	 * 
-	 * @param edges
-	 *            a list of edges to be added to the graph
+	 * @param edges a list of edges to be added to the graph
 	 */
 	public Graph(List<String> edges) {
 		adjacencyMap = new LinkedHashMap<>();
@@ -65,22 +63,19 @@ public class Graph {
 	}
 
 	/**
-	 * This method returns a boolean based on whether the
-	 * input sets are reflexive.
+	 * This method returns a boolean based on whether the input sets are reflexive.
 	 * 
 	 * TODO: Complete this method (Note a set is not passed in as a parameter but a
 	 * list)
 	 * 
-	 * @param set
-	 *            A list of TwitterHandles
-	 * @param relation
-	 *            A relation between the TwitterHandles
+	 * @param set      A list of TwitterHandles
+	 * @param relation A relation between the TwitterHandles
 	 * @return true if the set and relation are reflexive
 	 */
 	public boolean isReflexive(List<String> set, List<String> relation) {
-		for(String node : set) {
-			
-			if(!relation.contains(node + "," + node)) {
+		// loop through the set
+		for (String node : set) { 
+			if (!relation.contains(node + "," + node)) { // returns false if relation is not reflexive
 				return false;
 			}
 		}
@@ -88,26 +83,26 @@ public class Graph {
 	}
 
 	/**
-	 * This method returns a boolean based on whether the
-	 * input set is symmetric.
+	 * This method returns a boolean based on whether the input set is symmetric.
 	 * 
-	 * If the method returns false, then the following must
-	 * be printed to the console:
-	 * "For the graph to be symmetric tuple: " + requiredElement + " MUST be
-	 * present"
+	 * If the method returns false, then the following must be printed to the
+	 * console: "For the graph to be symmetric tuple: " + requiredElement + " MUST
+	 * be present"
 	 * 
 	 * TODO: Complete this method (Note a set is not passed in as a parameter but a
 	 * list)
 	 * 
-	 * @param relation
-	 *            A relation between the TwitterHandles
+	 * @param relation A relation between the TwitterHandles
 	 * @return true if the relation is symmetric
 	 */
 	public boolean isSymmetric(List<String> relation) {
-		for(String edge : relation) {
+		// loops through every edge in relation
+		for (String edge : relation) {
+			
+			// splits the edge into its nodes
 			String[] nodesToCheck = edge.split(",");
 			String requiredElement = nodesToCheck[1] + "," + nodesToCheck[0];
-			if(!relation.contains(requiredElement)) {
+			if (!relation.contains(requiredElement)) { // if not symmetric, returns false
 				System.out.println("For the graph to be symmetric tuple: " + requiredElement + " MUST be present");
 				return false;
 			}
@@ -116,50 +111,45 @@ public class Graph {
 	}
 
 	/**
-	 * This method returns a boolean based on whether the
-	 * input set is transitive.
+	 * This method returns a boolean based on whether the input set is transitive.
 	 * 
-	 * If the method returns false, then the following must
-	 * be printed to the console:
-	 * "For the graph to be transitive tuple: " + requiredElement + " MUST be
-	 * present"
+	 * If the method returns false, then the following must be printed to the
+	 * console: "For the graph to be transitive tuple: " + requiredElement + " MUST
+	 * be present"
 	 * 
 	 * TODO: Complete this method (Note a set is not passed in as a parameter but a
 	 * list)
 	 * 
-	 * @param relation
-	 *            A relation between the TwitterHandles
+	 * @param relation A relation between the TwitterHandles
 	 * @return true if the relation is transitive
 	 */
 	public boolean isTransitive(List<String> relation) {
-		for(String edge : relation) {
+		for (String edge : relation) {
 			String[] relationToCheck = edge.split(",");
-			
-			for(String edgeCheck1 : relation) {
+
+			for (String edgeCheck1 : relation) {
 				if (edgeCheck1.startsWith(relationToCheck[1])) {
 					String[] relationToCheck2 = edgeCheck1.split(",");
 					String requiredElement = relationToCheck[0] + "," + relationToCheck2[1];
-					
-					if(!relation.contains(requiredElement)) {
-						System.out.println("For the graph to be transitive tuple: " + requiredElement + " MUST be present");
+
+					if (!relation.contains(requiredElement)) {
+						System.out.println(
+								"For the graph to be transitive tuple: " + requiredElement + " MUST be present");
 						return false;
 					}
 				}
 			}
-		}	
+		}
 		return true;
 	}
 
 	/**
-	 * This method returns a boolean based on whether the
-	 * input sets are anti-symmetric
-	 * TODO: Complete this method (Note a set is not passed in as a parameter but a
-	 * list)
+	 * This method returns a boolean based on whether the input sets are
+	 * anti-symmetric TODO: Complete this method (Note a set is not passed in as a
+	 * parameter but a list)
 	 * 
-	 * @param set
-	 *            A list of TwitterHandles
-	 * @param relation
-	 *            A relation between the TwitterHandles
+	 * @param set      A list of TwitterHandles
+	 * @param relation A relation between the TwitterHandles
 	 * @return true if the set and relation are anti-symmetric
 	 */
 	public boolean isEquivalence(List<String> set, List<String> relation) {
@@ -169,30 +159,27 @@ public class Graph {
 	/**
 	 * This method returns a List of the equivalence class
 	 * 
-	 * If the method can not find the equivalence class, then
-	 * The following must be printed to the console:
-	 * "Can't compute equivalence class as this is not an equivalence relation"
+	 * If the method can not find the equivalence class, then The following must be
+	 * printed to the console: "Can't compute equivalence class as this is not an
+	 * equivalence relation"
 	 * 
 	 * TODO: Complete this method (Note a set is not passed in as a parameter but a
 	 * list)
 	 * 
-	 * @param node
-	 *            A "TwitterHandle" in the graph
-	 * @param set
-	 *            A list of TwitterHandles
-	 * @param relation
-	 *            A relation between the TwitterHandles
+	 * @param node     A "TwitterHandle" in the graph
+	 * @param set      A list of TwitterHandles
+	 * @param relation A relation between the TwitterHandles
 	 * @return List that is the equivalence class
 	 */
 	public List<String> computeEquivalence(String node, List<String> set, List<String> relation) {
-		if(!isEquivalence(set, relation)) {
+		if (!isEquivalence(set, relation)) {
 			System.out.println("Can't compute equivalence class as this is not an equivalence relation");
 			return null;
 		}
-		
+
 		List<String> equivalenceClass = new ArrayList<String>();
-		for(String edge : relation) {
-			if(edge.startsWith(node)) {
+		for (String edge : relation) {
+			if (edge.startsWith(node)) {
 				equivalenceClass.add(edge.split(",")[1]);
 			}
 		}
@@ -200,8 +187,8 @@ public class Graph {
 	}
 
 	/**
-	 * This method returns a List nodes using
-	 * the BFS (Breadth First Search) algorithm
+	 * This method returns a List nodes using the BFS (Breadth First Search)
+	 * algorithm
 	 * 
 	 * @return List of nodes (as strings) using the BFS algorithm
 	 */
@@ -210,69 +197,60 @@ public class Graph {
 	}
 
 	/**
-	 * This method returns a List nodes using
-	 * the BFS (Breadth First Search) algorithm
+	 * This method returns a List nodes using the BFS (Breadth First Search)
+	 * algorithm
 	 * 
-	 * @param start
-	 *            A "TwitterHandle" in the graph
+	 * @param start A "TwitterHandle" in the graph
 	 * @return List of nodes (as strings) using the BFS algorithm
 	 */
 	public List<Node<String>> breadthFirstSearch(Node<String> start, boolean rooted) {// name to breadthFirstSearch
-		/*if(rooted == true) {
-			
-		}*/
-		
+
 		List<Node<String>> visited = new ArrayList<Node<String>>();
 		NodesStackAndQueue<Node<String>> queue = new NodesStackAndQueue<Node<String>>();
-		
-		while(true) {
-			
+
+		while (true) {
+
 			queue.append(start);
 			visited.add(start);
-		
-			while(!queue.isEmpty()) {
-				
+
+			while (!queue.isEmpty()) {
+
 				Node<String> dequeuedNode = queue.pop();
 
 				LinkedList<Edge<Node<String>>> adjacentNodes = adjacencyMap.get(dequeuedNode);
-				while(adjacentNodes.size() != 0) {
-					
+				while (adjacentNodes.size() != 0) {
+
 					Node<String> currentNode = adjacentNodes.get(0).getTarget();
-					if(!visited.contains(currentNode)) {
+					if (!visited.contains(currentNode)) {
 						visited.add(currentNode);
 						queue.append(currentNode);
 					}
 					adjacentNodes.remove(0);
 				}
 			}
-			
-			if(rooted == false) {
+
+			if (rooted == false) {
 				Node<String> currentStart = start;
-				for(Node<String> node : adjacencyMap.keySet()) {
-					if(!visited.contains(node)) {
+				for (Node<String> node : adjacencyMap.keySet()) {
+					if (!visited.contains(node)) {
 						start = node;
-						System.out.println("NEW NODE ADDED: " + start.getValue());
 						break;
 					}
 				}
-				
-				if(start == currentStart) {
+
+				if (start == currentStart) {
 					break;
 				}
-			}
-			else {
+			} else {
 				break;
 			}
 		}
-		
 		System.out.println(visited);
 		return visited;
-		
 	}
 
 	/**
-	 * This method returns a List nodes using
-	 * the DFS (Depth First Search) algorithm
+	 * This method returns a List nodes using the DFS (Depth First Search) algorithm
 	 * 
 	 * @return List of nodes (as strings) using the DFS algorithm
 	 */
@@ -281,15 +259,55 @@ public class Graph {
 	}
 
 	/**
-	 * This method returns a List nodes using
-	 * the DFS (Depth First Search) algorithm
+	 * This method returns a List nodes using the DFS (Depth First Search) algorithm
 	 * 
-	 * @param start
-	 *            A "TwitterHandle" in the graph
+	 * @param start A "TwitterHandle" in the graph
 	 * @return List of nodes (as strings) using the DFS algorithm
 	 */
 	public List<Node<String>> depthFirstSearch(Node<String> start, boolean rooted) {
-		throw new java.lang.UnsupportedOperationException("Not supported yet.");
+		
+		List<Node<String>> visited = new ArrayList<Node<String>>();
+		List<Node<String>> stackDuplicates = new ArrayList<Node<String>>();
+		NodesStackAndQueue<Node<String>> stack = new NodesStackAndQueue<Node<String>>();
+		
+		while (true) {
+			stack.push(start);
+			
+			while(!stack.isEmpty()) {
+				
+				Node<String> poppedNode = stack.pop();
+				visited.add(poppedNode);
+				stackDuplicates.add(poppedNode);
+				
+				LinkedList<Edge<Node<String>>> adjacentNodes = adjacencyMap.get(poppedNode);
+				while(adjacentNodes.size() != 0) {
+					
+					Node<String> currentNode = adjacentNodes.get(0).getTarget();
+					if(!visited.contains(currentNode) && !stackDuplicates.contains(currentNode)) {
+						stack.push(currentNode);
+						stackDuplicates.add(currentNode);
+					}
+					adjacentNodes.remove(0);
+				}
+			}
+			if (rooted == false) {
+				Node<String> currentStart = start;
+				for (Node<String> node : adjacencyMap.keySet()) {
+					if (!visited.contains(node)) {
+						start = node;
+						break;
+					}
+				}
+	
+				if (start == currentStart) {
+					break;
+				}
+			} else {
+				break;
+			}
+		}
+		
+		return visited;
 	}
 
 	/**

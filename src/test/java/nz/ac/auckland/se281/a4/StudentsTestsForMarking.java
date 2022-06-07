@@ -44,7 +44,7 @@ import nz.ac.auckland.se281.a4.ds.*;
 	StudentsTestsForMarking.Tast3EquivalenceTest.class,
 	StudentsTestsForMarking.Task3EquivalenceClassTest.class,
 	StudentsTestsForMarking.Task3BFSTest.class,
-	//StudentsTestsForMarking.Task3DFSTest.class,
+	StudentsTestsForMarking.Task3DFSTest.class,
 
 	//StudentsTestsForMarking.Task4SearchTweetTest.class,
 
@@ -772,6 +772,16 @@ public class StudentsTestsForMarking {
 					add(new TwitterHandle("7"));
 				}
 			});
+			
+			file2result_BFS.put("g1.txt", new ArrayList<TwitterHandle>() {
+				{
+					add(new TwitterHandle("1"));
+					add(new TwitterHandle("2"));
+					add(new TwitterHandle("3"));
+					add(new TwitterHandle("0"));
+				}
+			});
+			
 		}
 
 		private void runTest(String fileName) {

@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Map.Entry;
 
 import nz.ac.auckland.se281.a4.ds.Graph;
 import nz.ac.auckland.se281.a4.ds.Node;
@@ -43,6 +44,25 @@ public class TweetGraph extends Graph {
 
 	// search for a keyword in a tweet starting from a given node
 	public String searchTweet(TwitterHandle user, String tweetKeyword) {
-		throw new java.lang.UnsupportedOperationException("Not supported yet.");
+		
+		List<Node<String>> dfsOrder = this.depthFirstSearch(user, false);
+		
+		for(Map.Entry<TwitterHandle, List<Tweet>> entry : this.nodeTweets.entrySet()) {
+			
+			
+			
+			
+			TwitterHandle currentHandle = entry.getKey();
+			List<String> tweetsList = getTweetsTexts(currentHandle);
+			
+			for(String tweet : tweetsList) {
+				if(tweet.contains(tweetKeyword)) {
+					System.out.println(tweetKeyword);
+					return("The tweet found is: " + tweet + "\nUser " + currentHandle.getName() + " tweeted " + tweetKeyword);
+				}
+			}
+		}
+		
+		return null;
 	}
 }
