@@ -249,7 +249,6 @@ public class Graph {
 				break;
 			}
 		}
-		System.out.println(visited);
 		// returns list of visited nodes in order
 		return visited;
 	}
@@ -311,7 +310,6 @@ public class Graph {
 				break;
 			}
 		}
-		System.out.println(visited);
 		return visited;
 	}
 
