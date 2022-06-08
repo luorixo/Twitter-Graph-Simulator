@@ -186,7 +186,7 @@ public class Graph {
 				equivalenceClass.add(edge.split(",")[1]); // adds everything related to node to equivalence class
 			}
 		}
-		return equivalenceClass; // returns equivalence class
+		return equivalenceClass;
 	}
 
 	/**
@@ -249,6 +249,7 @@ public class Graph {
 				break;
 			}
 		}
+		System.out.println(visited);
 		// returns list of visited nodes in order
 		return visited;
 	}
@@ -310,7 +311,7 @@ public class Graph {
 				break;
 			}
 		}
-
+		System.out.println(visited);
 		return visited;
 	}
 

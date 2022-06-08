@@ -853,7 +853,18 @@ public class StudentsTestsForMarking {
 					add(new TwitterHandle("5"));
 					add(new TwitterHandle("7"));
 					add(new TwitterHandle("6"));
-
+				}
+			});
+			
+			file2result_DFS.put("h1.txt", new ArrayList<TwitterHandle>() {
+				{
+					add(new TwitterHandle("1"));
+					add(new TwitterHandle("2"));
+					add(new TwitterHandle("3"));
+					add(new TwitterHandle("4"));
+					add(new TwitterHandle("5"));
+					add(new TwitterHandle("6"));
+					add(new TwitterHandle("7"));
 				}
 			});
 		}
@@ -883,6 +894,11 @@ public class StudentsTestsForMarking {
 		@Test
 		public void T3_57_F() {
 			runTest("f.txt");
+		}
+		
+		@Test
+		public void T3_test() {
+			runTest("g1.txt");
 		}
 	}
 

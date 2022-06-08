@@ -177,7 +177,7 @@ public class LinkedList<T> {
 			currentNode = currentNode.getNext();
 		}
 
-		return sizeCount; // returns the count
+		return sizeCount;
 	}
 
 	/**

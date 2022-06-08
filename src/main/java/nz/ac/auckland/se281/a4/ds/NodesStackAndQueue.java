@@ -56,10 +56,10 @@ public class NodesStackAndQueue<T> {
 	 */
 	public T pop() throws EmptyStackException {
 		if (isEmpty()) {
-			throw new EmptyStackException();
+			throw new EmptyStackException(); // exception check
 		}
 
-		if (head == tail) {
+		if (head == tail) { // if size of stack is 1
 			T tailValue = tail.getValue();
 			head = null;
 			tail = null;
